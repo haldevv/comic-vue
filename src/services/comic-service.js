@@ -7,18 +7,18 @@ class ComicService {
      * @returns
      */
     async getComic() {
-        const comicId = await this.getComicId()
+      const comicId = await this.getComicId()
 
-        const api = process.env.VUE_APP_URL_API
-        const { data } = await httpService.get(`${api}/${comicId}/info.0.json`)
+      const api = process.env.VUE_APP_URL_API
+      const { data } = await httpService.get(`${api}/${comicId}/info.0.json`)
 
-        return {
-            image: {
-                url: sanitizeUrl(data.img),
-                alt: data.alt
-            },
-            title: data.title
-        }
+      return {
+        image: {
+          url: sanitizeUrl(data.img),
+          alt: data.alt
+        },
+        title: data.title
+      }
     }
 
     /**
@@ -26,9 +26,9 @@ class ComicService {
      * @returns
      */
     async getComicId() {
-        const api = process.env.VUE_APP_URL_API
-        const response = await httpService.get(`${api}/info.0.json`)
-        return Math.floor(Math.random() * (response.data.num - 1) + 1)
+      const api = process.env.VUE_APP_URL_API
+      const response = await httpService.get(`${api}/info.0.json`)
+      return Math.floor(Math.random() * (response.data.num - 1) + 1)
     }
 }
 
